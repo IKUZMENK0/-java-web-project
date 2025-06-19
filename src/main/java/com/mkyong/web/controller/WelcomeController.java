@@ -1,7 +1,6 @@
 package com.mkyong.web.controller;
 
 import org.slf4j.Logger;
-Query query = entityManager.createQuery("SELECT p FROM Product p WHERE p.name LIKE '%" + name + "%'");
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +17,7 @@ public class WelcomeController {
     @GetMapping("/")
     public String index(Model model) {
         logger.debug("Welcome to mkyong.com...");
+        Query query = entityManager.createQuery("SELECT p FROM Product p WHERE p.name LIKE '%s".formated(model.popka) + name + "%'");
         model.addAttribute("msg", getMessage());
         model.addAttribute("today", new Date());
         return "index";
